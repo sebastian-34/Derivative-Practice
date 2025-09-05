@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derivative Practice</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 32px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .question {
+            margin-bottom: 28px;
+            padding: 18px;
+            background: #f1f3f6;
+            border-radius: 6px;
+        }
+        .question-number {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .answer-latex {
+            margin-top: 12px;
+            background: #eaf4ea;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-line;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Derivative Practice Questions</h1>
+        <div id="questions"></div>
+    </div>
+    <script>
+        const questions = [
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "f(x) = 3x^4 - 5x^2 + 7",
+                answer: "f'(x) = 12x^3 - 10x"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "g(x) = \\frac{2x^3 + 1}{x^2 - 4}",
+                answer: "g'(x) = \\frac{(6x^2)(x^2-4) - (2x^3+1)(2x)}{(x^2-4)^2}"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "h(x) = \\sin(x^2) + \\cos(3x)",
+                answer: "h'(x) = 2x \\cos(x^2) - 3 \\sin(3x)"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "k(x) = e^{2x} \\cdot \\ln(x)",
+                answer: "k'(x) = 2e^{2x} \\ln(x) + \\frac{e^{2x}}{x}"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "m(x) = \\tan(x) + x^5",
+                answer: "m'(x) = \\sec^2(x) + 5x^4"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "p(x) = \\frac{\\sin(x)}{x^2 + 1}",
+                answer: "p'(x) = \\frac{\\cos(x)(x^2+1) - 2x\\sin(x)}{(x^2+1)^2}"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "q(x) = x^2 e^{x} + \\frac{1}{x}",
+                answer: "q'(x) = 2x e^{x} + x^2 e^{x} - \\frac{1}{x^2}"
+            },
+            {
+                prompt: "Find the derivative of the following function:",
+                func: "r(x) = \\ln(x^2 + 3x)",
+                answer: "r'(x) = \\frac{2x+3}{x^2+3x}"
+            },
+            {
+                prompt: "Find the value of the derivative of the following function at $x = \\pi$:",
+                func: "s(x) = x^3 \\sin(x)",
+                answer: "s'(x) = 3x^2 \\sin(x) + x^3 \\cos(x) \\ \\ \\ s'(\\pi) = 3\\pi^2 \\sin(\\pi) + \\pi^3 \\cos(\\pi) = 3\\pi^2 \times 0 + \\pi^3 \times (-1) = -\\pi^3"
+            },
+            {
+                prompt: "Find the value of the derivative of the following function at $x = 1$:",
+                func: "t(x) = \\frac{e^{x}}{x^2}",
+                answer: "t'(x) = \\frac{d}{dx} \\left( \\frac{e^{x}}{x^2} \\right ) = \\frac{e^{x}x^2 - e^{x}2x}{x^4} = \\frac{e^{x}(x-2)}{x^3} \\ \\ \\ t'(1) = \\frac{e^{1}(1-2)}{1^3} = -e"
+            }
+        ];
+
+        const questionsDiv = document.getElementById('questions');
+        questions.forEach((q, i) => {
+            const div = document.createElement('div');
+            div.className = 'question';
+            div.innerHTML = `
+                <div class="question-number">Question ${i+1}</div>
+                <div class="question-prompt">${q.prompt}</div>
+                <div class="function-latex">$$${q.func}$$</div>
+                <div class="answer-latex" style="margin-top:12px;background:#eaf4ea;padding:10px;border-radius:4px;">Answer: $$${q.answer}$$</div>
+            `;
+            questionsDiv.appendChild(div);
+        });
+        // Re-render MathJax after adding questions
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+    </script>
+</body>
+</html>
